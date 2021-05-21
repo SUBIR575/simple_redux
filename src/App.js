@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {useSelector,useDispatch} from 'react-redux' 
+import {incNum,decNum} from './action/index'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = () => {
+  const myState = useSelector((state) => state.TaskReducer);
+  const dispatch = useDispatch();
+    return(
+    <div>
+    <button onClick={()=>dispatch(incNum())}><span>+</span></button>
+    <input type='text' value={myState}/>
+    <button onClick={ ()=>dispatch(decNum())}><span>-</span></button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
